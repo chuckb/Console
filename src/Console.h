@@ -80,22 +80,23 @@ class Console {
 			Console_Serial->write('m');
 
 			// Print Corners
-			this->Set_Cursor(_X1, _Y1); Console_Serial->println(F("┌"));
-			this->Set_Cursor(_X2, _Y1); Console_Serial->println(F("└"));
-			this->Set_Cursor(_X1, _Y2); Console_Serial->println(F("┐"));
-			this->Set_Cursor(_X2, _Y2); Console_Serial->println(F("┘"));
+      
+			this->Set_Cursor(_X1, _Y1); Console_Serial->println(F("\x1b(0\x6c\x1b(B")); // "┌"
+			this->Set_Cursor(_X2, _Y1); Console_Serial->println(F("\x1b(0\x6d\x1b(B")); // "└"
+			this->Set_Cursor(_X1, _Y2); Console_Serial->println(F("\x1b(0\x6b\x1b(B")); // "┐"
+			this->Set_Cursor(_X2, _Y2); Console_Serial->println(F("\x1b(0\x6a\x1b(B")); // "┘"
 
 			// Print Lines
 			for (uint8_t i = _X1 + 1; i <= _X2 - 1; i++) {
 				
-				this->Set_Cursor(i, _Y1); Console_Serial->println(F("│"));
-				this->Set_Cursor(i, _Y2); Console_Serial->println(F("│"));
+				this->Set_Cursor(i, _Y1); Console_Serial->println(F("\x1b(0\x78\x1b(B")); // "│"
+				this->Set_Cursor(i, _Y2); Console_Serial->println(F("\x1b(0\x78\x1b(B")); // "│"
 
 			}
 			for (uint8_t i = _Y1 + 1; i <= _Y2 - 1; i++) {
 				
-				this->Set_Cursor(_X1, i); Console_Serial->println(F("─"));
-				this->Set_Cursor(_X2, i); Console_Serial->println(F("─"));
+				this->Set_Cursor(_X1, i); Console_Serial->println(F("\x1b(0\x71\x1b(B")); // "─"
+				this->Set_Cursor(_X2, i); Console_Serial->println(F("\x1b(0\x71\x1b(B")); // "─"
 				
 			}
 
